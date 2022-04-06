@@ -7,8 +7,13 @@ def draw():
         print("{0} | {1} | {2}".format(grid[i][0],grid[i][1],grid[i][2]))
 
 def move(shape,x,y):
-    if (grid[x][y] == " "):
-        grid[x][y] = shape
+    if (x >= 0 and x < 3 and y >= 0 and y < 3):
+        if (grid[x][y] == " "):
+            grid[x][y] = shape
+        else:
+            print("illegal move!")
+    else:
+        print("illegal move!")
         
 def check_win(shape,x,y):
     win_row = [shape,shape,shape]
@@ -34,8 +39,8 @@ def game():
         col = int(input("{0} col: ".format(shapes[turn])))
         move(shapes[turn],row,col)
         draw()
-        turn = 1 - turn
         not_over =  not check_win(shapes[turn],row,col)
+        turn = 1 - turn
 
 game()
     
