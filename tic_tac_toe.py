@@ -29,11 +29,12 @@ def check_win(shape,x,y):
         return False
         
 def game():
+    round = 1
     turn = 0
     shapes = ["x","o"]
     draw()
     not_over = True
-    while (not_over):
+    while (not_over and round <= 9):
         #ask user for row and column
         row = int(input("{0} row: ".format(shapes[turn])))
         col = int(input("{0} col: ".format(shapes[turn])))
@@ -41,6 +42,10 @@ def game():
         draw()
         not_over =  not check_win(shapes[turn],row,col)
         turn = 1 - turn
+        round += 1
+    # if noone wins after round 9 then it is a tie (only if all moves are valid up to round 9)
+    if (not_over):
+        print("tie!")
 
 game()
     
